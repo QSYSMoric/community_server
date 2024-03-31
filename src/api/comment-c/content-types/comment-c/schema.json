@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "comment_cs",
+  "info": {
+    "singularName": "comment-c",
+    "pluralName": "comment-cs",
+    "displayName": "commentC",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "content": {
+      "type": "text"
+    },
+    "article": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::article.article",
+      "inversedBy": "comment_cs"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "comment_cs"
+    },
+    "trends": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::trend.trend",
+      "mappedBy": "comment_c"
+    }
+  }
+}

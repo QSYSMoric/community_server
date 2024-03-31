@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "trends",
+  "info": {
+    "singularName": "trend",
+    "pluralName": "trends",
+    "displayName": "动态",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "trends"
+    },
+    "comment_c": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::comment-c.comment-c",
+      "inversedBy": "trends"
+    },
+    "aboutArticle": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::article.article",
+      "inversedBy": "aboutDynamic"
+    }
+  }
+}
