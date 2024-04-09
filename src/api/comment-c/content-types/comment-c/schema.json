@@ -27,11 +27,11 @@
       "target": "plugin::users-permissions.user",
       "inversedBy": "comment_cs"
     },
-    "trends": {
+    "trend": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToOne",
       "target": "api::trend.trend",
-      "mappedBy": "comment_c"
+      "inversedBy": "comment_cs"
     }
   }
 }

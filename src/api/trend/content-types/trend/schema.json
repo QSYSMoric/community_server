@@ -24,17 +24,17 @@
       "target": "plugin::users-permissions.user",
       "inversedBy": "trends"
     },
-    "comment_c": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::comment-c.comment-c",
-      "inversedBy": "trends"
-    },
     "aboutArticle": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::article.article",
       "inversedBy": "aboutDynamic"
+    },
+    "comment_cs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment-c.comment-c",
+      "mappedBy": "trend"
     }
   }
 }

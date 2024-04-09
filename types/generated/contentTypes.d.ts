@@ -1068,7 +1068,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    content: Attribute.Text;
+    content: Attribute.Text & Attribute.Required;
     imgs: Attribute.Media;
     introduction: Attribute.String;
     publisher: Attribute.Relation<
@@ -1184,9 +1184,9 @@ export interface ApiCommentCCommentC extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
-    trends: Attribute.Relation<
+    trend: Attribute.Relation<
       'api::comment-c.comment-c',
-      'oneToMany',
+      'manyToOne',
       'api::trend.trend'
     >;
     createdAt: Attribute.DateTime;
@@ -1300,15 +1300,15 @@ export interface ApiTrendTrend extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
-    comment_c: Attribute.Relation<
-      'api::trend.trend',
-      'manyToOne',
-      'api::comment-c.comment-c'
-    >;
     aboutArticle: Attribute.Relation<
       'api::trend.trend',
       'manyToOne',
       'api::article.article'
+    >;
+    comment_cs: Attribute.Relation<
+      'api::trend.trend',
+      'oneToMany',
+      'api::comment-c.comment-c'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
