@@ -108,12 +108,6 @@
       "target": "api::comment-c.comment-c",
       "mappedBy": "users_permissions_user"
     },
-    "likes": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::like.like",
-      "mappedBy": "users_permissions_user"
-    },
     "trends": {
       "type": "relation",
       "relation": "oneToMany",
@@ -125,6 +119,18 @@
       "relation": "oneToMany",
       "target": "api::article.article",
       "mappedBy": "publisher"
+    },
+    "collectionArtics": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::article.article",
+      "mappedBy": "collectionUser"
+    },
+    "likeTrends": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::trend.trend",
+      "mappedBy": "likeUsers"
     }
   }
 }

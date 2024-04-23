@@ -748,11 +748,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::comment-c.comment-c'
     >;
-    likes: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToMany',
-      'api::like.like'
-    >;
     trends: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToMany',
@@ -762,6 +757,16 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'plugin::users-permissions.user',
       'oneToMany',
       'api::article.article'
+    >;
+    collectionArtics: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'manyToMany',
+      'api::article.article'
+    >;
+    likeTrends: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'manyToMany',
+      'api::trend.trend'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1081,11 +1086,6 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       'oneToMany',
       'api::comment-c.comment-c'
     >;
-    likes: Attribute.Relation<
-      'api::article.article',
-      'oneToMany',
-      'api::like.like'
-    >;
     classification: Attribute.Relation<
       'api::article.article',
       'oneToOne',
@@ -1102,6 +1102,11 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       'api::trend.trend'
     >;
     cover: Attribute.Media;
+    collectionUser: Attribute.Relation<
+      'api::article.article',
+      'manyToMany',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1248,39 +1253,6 @@ export interface ApiLabelLabel extends Schema.CollectionType {
   };
 }
 
-export interface ApiLikeLike extends Schema.CollectionType {
-  collectionName: 'likes';
-  info: {
-    singularName: 'like';
-    pluralName: 'likes';
-    displayName: '\u70B9\u8D5E';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    article: Attribute.Relation<
-      'api::like.like',
-      'manyToOne',
-      'api::article.article'
-    >;
-    users_permissions_user: Attribute.Relation<
-      'api::like.like',
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
-    likeDate: Attribute.DateTime;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::like.like', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::like.like', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
 export interface ApiTrendTrend extends Schema.CollectionType {
   collectionName: 'trends';
   info: {
@@ -1309,6 +1281,11 @@ export interface ApiTrendTrend extends Schema.CollectionType {
       'api::trend.trend',
       'oneToMany',
       'api::comment-c.comment-c'
+    >;
+    likeUsers: Attribute.Relation<
+      'api::trend.trend',
+      'manyToMany',
+      'plugin::users-permissions.user'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1355,7 +1332,6 @@ declare module '@strapi/types' {
       'api::classification.classification': ApiClassificationClassification;
       'api::comment-c.comment-c': ApiCommentCCommentC;
       'api::label.label': ApiLabelLabel;
-      'api::like.like': ApiLikeLike;
       'api::trend.trend': ApiTrendTrend;
     }
   }

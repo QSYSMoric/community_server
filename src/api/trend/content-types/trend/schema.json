@@ -35,6 +35,12 @@
       "relation": "oneToMany",
       "target": "api::comment-c.comment-c",
       "mappedBy": "trend"
+    },
+    "likeUsers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "likeTrends"
     }
   }
 }
