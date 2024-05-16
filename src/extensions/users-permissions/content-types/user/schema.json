@@ -9,8 +9,7 @@
     "displayName": "User"
   },
   "options": {
-    "draftAndPublish": false,
-    "avatart": true
+    "draftAndPublish": false
   },
   "attributes": {
     "username": {
@@ -131,6 +130,15 @@
       "relation": "manyToMany",
       "target": "api::trend.trend",
       "mappedBy": "likeUsers"
+    },
+    "excels": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::classification.classification",
+      "inversedBy": "users"
+    },
+    "explain": {
+      "type": "richtext"
     }
   }
 }

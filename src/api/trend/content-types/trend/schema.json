@@ -15,9 +15,6 @@
     "title": {
       "type": "string"
     },
-    "text": {
-      "type": "text"
-    },
     "users_permissions_user": {
       "type": "relation",
       "relation": "manyToOne",
@@ -41,6 +38,9 @@
       "relation": "manyToMany",
       "target": "plugin::users-permissions.user",
       "inversedBy": "likeTrends"
+    },
+    "text": {
+      "type": "richtext"
     }
   }
 }

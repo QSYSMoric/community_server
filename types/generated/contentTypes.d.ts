@@ -695,7 +695,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: false;
-    avatart: true;
   };
   attributes: {
     username: Attribute.String &
@@ -768,6 +767,12 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToMany',
       'api::trend.trend'
     >;
+    excels: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'manyToMany',
+      'api::classification.classification'
+    >;
+    explain: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1073,7 +1078,6 @@ export interface ApiArticleArticle extends Schema.CollectionType {
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    content: Attribute.Text & Attribute.Required;
     imgs: Attribute.Media;
     introduction: Attribute.String;
     publisher: Attribute.Relation<
@@ -1107,6 +1111,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       'manyToMany',
       'plugin::users-permissions.user'
     >;
+    content: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1148,6 +1153,11 @@ export interface ApiClassificationClassification extends Schema.CollectionType {
       'api::article.article'
     >;
     title: Attribute.String;
+    users: Attribute.Relation<
+      'api::classification.classification',
+      'manyToMany',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1266,7 +1276,6 @@ export interface ApiTrendTrend extends Schema.CollectionType {
   };
   attributes: {
     title: Attribute.String;
-    text: Attribute.Text;
     users_permissions_user: Attribute.Relation<
       'api::trend.trend',
       'manyToOne',
@@ -1287,6 +1296,7 @@ export interface ApiTrendTrend extends Schema.CollectionType {
       'manyToMany',
       'plugin::users-permissions.user'
     >;
+    text: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

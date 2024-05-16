@@ -16,10 +16,6 @@
       "type": "string",
       "required": true
     },
-    "content": {
-      "type": "text",
-      "required": true
-    },
     "imgs": {
       "type": "media",
       "multiple": true,
@@ -80,6 +76,9 @@
       "relation": "manyToMany",
       "target": "plugin::users-permissions.user",
       "inversedBy": "collectionArtics"
+    },
+    "content": {
+      "type": "richtext"
     }
   }
 }
