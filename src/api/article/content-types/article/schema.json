@@ -44,7 +44,7 @@
     },
     "classification": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::classification.classification",
       "inversedBy": "article"
     },

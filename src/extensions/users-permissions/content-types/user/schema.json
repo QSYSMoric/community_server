@@ -139,6 +139,10 @@
     },
     "explain": {
       "type": "richtext"
+    },
+    "birthday": {
+      "type": "date",
+      "default": "2024-05-18"
     }
   }
 }

@@ -773,6 +773,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'api::classification.classification'
     >;
     explain: Attribute.RichText;
+    birthday: Attribute.Date & Attribute.DefaultTo<'2024-05-18'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1092,7 +1093,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
     >;
     classification: Attribute.Relation<
       'api::article.article',
-      'oneToOne',
+      'manyToOne',
       'api::classification.classification'
     >;
     labels: Attribute.Relation<
@@ -1147,16 +1148,16 @@ export interface ApiClassificationClassification extends Schema.CollectionType {
       'oneToMany',
       'api::label.label'
     >;
-    article: Attribute.Relation<
-      'api::classification.classification',
-      'oneToOne',
-      'api::article.article'
-    >;
     title: Attribute.String;
     users: Attribute.Relation<
       'api::classification.classification',
       'manyToMany',
       'plugin::users-permissions.user'
+    >;
+    article: Attribute.Relation<
+      'api::classification.classification',
+      'oneToMany',
+      'api::article.article'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
